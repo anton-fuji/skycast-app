@@ -2,7 +2,9 @@ package handler
 
 import (
 	"net/http"
+	"strings"
 
+	"github.com/anton-fuji/skycast-app/backend/models"
 	"github.com/anton-fuji/skycast-app/backend/services"
 	"github.com/gin-gonic/gin"
 )
@@ -17,8 +19,10 @@ func GetHealth(c *gin.Context) {
 
 // 都市ごとのデータ
 func GetWeatherByCity(c *gin.Context) {
-	city := c.Param("city")
-	if city == ""{
+	rowCity := strings.ToLower(c.Param("city"))
+
+	city, ok := models.CityAlias[rowCity]
+	if !ok {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"error": "都市が選択されていません",
 		})

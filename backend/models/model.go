@@ -1,5 +1,17 @@
 package models
 
+var CityAlias = map[string]string {
+	"東京":     "tokyo",
+    "とうきょう": "tokyo",
+    "tokyo":   "tokyo",
+    "大阪":     "osaka",
+    "おおさか": "osaka",
+    "osaka":   "osaka",
+    "岡山":     "okayama",
+    "おかやま": "okayama",
+    "okayama": "okayama",
+}
+
 type WeatherResponse struct {
 	City        string  `json:"city"`
 	Country     string  `json:"country"`
